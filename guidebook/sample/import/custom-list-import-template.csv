@@ -1,0 +1,5 @@
+Name,"Sub-Title (i.e. Location, Table/Booth, or Title/Sponsorship Level)",Description (Optional),Location/Room,Image (Optional),Thumbnail (Optional)
+Sample Exhibitor: Google,Booth 41,Company Description,Room A,a.jpg,A.jpg,Don't forget to delete these rows!
+Sample Exhibitor: Intel,Table 55,Company Description,Room B,b.jpeg,B.jpeg,Don't forget to delete these rows!
+Sample Speaker: John Doe,"VP, Company",Enter bio / speaking sessions,Room C,c.png,C.jpeg,Don't forget to delete these rows!
+Sample Sponsor: Intel,Gold Sponsor,Enter description,Room D,d.png,D.jpeg,Don't forget to delete these rows!
