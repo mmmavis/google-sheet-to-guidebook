@@ -20,11 +20,10 @@ Important note from [google-spreadsheet module](https://www.npmjs.com/package/go
 2. Find out what meta/columns are needed for Guidebook
 3. Format accepted proposals so only the meta Guidebook needs are kept. Make sure these meta are in the right format as well.
 4. Save the transformed proposal objects in a JSON and a CSV file. (This is for logging and backup purposes)
-5. Import the .csv file as schedule(sessions) to Guidebook.
+5. Import the .csv file as schedule(sessions) to Guidebook. Important note: `date` and `time` related fields are required. So make sure all sessions have these meta filled before importing the file to Guidebook.
     - Import the .csv to Google Spreadsheet
     - Export as .csv again so columns and data are formatted in the way Guidebook accepts (Google Spreadsheet auto formats things to the way Guidebook likes that's why we are doing these seem-to-be-redundant steps).
-    - Import the new .csv file to Guidebook
-Important note: `date` and `time` related fields are required. So make sure all sessions have these meta filled before importing the file to Guidebook.
+    - Import the new .csv file to Guidebook.
 
 
 ## Import session facilitators to Guidebook
