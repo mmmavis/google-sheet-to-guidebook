@@ -168,6 +168,12 @@ let columns = {
     }),
     new Meta(`milestone`, `Schedule Track (Optional)`, (oldValue) => {
       return oldValue;
+    }),
+    new Meta(null, `Allow Checkin (Optional)`, () => {
+      return `False`;
+    }),
+    new Meta(null, `Allow Waitlist (Optional)`, () => {
+      return `False`;
     })
   ]
 };

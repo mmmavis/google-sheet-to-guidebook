@@ -1,5 +1,6 @@
 import GoogleSpreadsheet from 'google-spreadsheet';
 import getEnvVars from './get-env-vars';
+import Formatter from './formatter';
 
 const ENV_VARS = getEnvVars();
 const GOOGLE_API_CLIENT_EMAIL_2018 = ENV_VARS.GOOGLE_API_CLIENT_EMAIL_2018;
@@ -26,9 +27,18 @@ export default function(callback) {
       console.log(rows.length);
       if (getRowError) {
         console.log(`[getRowError]`, getRowError);
+        callback(getRowError);
       }
 
-      callback(err, rows);
+      let sessions = rows.map(row => Formatter.formatSession(row));
+      let facilitatorsArrays = rows.map(row => Formatter.formatFacilitator(row));
+      let facilitators = [];
+
+      facilitatorsArrays.forEach((arr) => {
+        facilitators = facilitators.concat(arr);
+      });
+
+      callback(null, sessions, facilitators);
     });
   });
 }
