@@ -6,6 +6,7 @@ const ENV_VARS = getEnvVars();
 const GOOGLE_API_CLIENT_EMAIL_2018 = ENV_VARS.GOOGLE_API_CLIENT_EMAIL_2018;
 const GOOGLE_API_PRIVATE_KEY_2018 = ENV_VARS.GOOGLE_API_PRIVATE_KEY_2018;
 const ACCEPTED_PROPOSALS_GOOGLE_SPREADSHEET_ID = ENV_VARS.ACCEPTED_PROPOSALS_GOOGLE_SPREADSHEET_ID;
+const SPREADSHEET_ACCEPTED_PROPOSALS_WORKSHEET_INDEX = ENV_VARS.SPREADSHEET_ACCEPTED_PROPOSALS_WORKSHEET_INDEX;
 
 export default function(callback) {
   var sheet = new GoogleSpreadsheet(ACCEPTED_PROPOSALS_GOOGLE_SPREADSHEET_ID);
@@ -22,8 +23,7 @@ export default function(callback) {
     }
 
     // GoogleSpreadsheet.getRows(worksheet_id, callback)
-    // worksheet_id - the index of the sheet to read from (index starts at 1)
-    sheet.getRows(1, (getRowError, rows) => {
+    sheet.getRows(SPREADSHEET_ACCEPTED_PROPOSALS_WORKSHEET_INDEX, (getRowError, rows) => {
       console.log(rows.length);
       if (getRowError) {
         console.log(`[getRowError]`, getRowError);
@@ -31,14 +31,8 @@ export default function(callback) {
       }
 
       let sessions = rows.map(row => Formatter.formatSession(row));
-      let facilitatorsArrays = rows.map(row => Formatter.formatFacilitator(row));
-      let facilitators = [];
 
-      facilitatorsArrays.forEach((arr) => {
-        facilitators = facilitators.concat(arr);
-      });
-
-      callback(null, sessions, facilitators);
+      callback(null, sessions);
     });
   });
 }

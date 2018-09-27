@@ -10,7 +10,7 @@ export default (fileNameSuffix = ``, fileExtension = `.json`) => {
   let time = timestamp.format(`HHmmss`);
 
   let dir = `${DIR_PATH_ROOT}/${date}`;
-  let filePath = `${dir}/${time}-${fileNameSuffix}${fileExtension}`;
+  let filePath = `${dir}/${date}-${time}-${fileNameSuffix}${fileExtension}`;
 
   if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);

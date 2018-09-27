@@ -55,3 +55,46 @@ Important note from [google-spreadsheet module](https://www.npmjs.com/package/go
 3. Import the filled CSV file to Guidebook.
 
 
+
+
+
+
+
+
+- make sure your google service account has edit access to the google spreadsheet
+
+
+
+- !!! make sure sheet doesn't have empty rows in between
+- generate sessions.csv (step1.js)
+- import to Guidebook
+- export from Guidebook. make all sessions are exported
+- import to the same Google Spreadsheet. guidebook Sessions(sheet #3).
+- make sure env var in .env is up to date. (sheet index)
+- add column `guidebooksessionid` to sheet #1 (all accepted proposals)
+- run script to map Guidebook Session ID to Sheet #1 (all accepted proposals) (build and run step2.js)
+
+
+
+- run script (build and run step3.js) to generate facilitators.csv
+- import facilitators.csv to Guidebook AND google spreadsheet: facilitators(sheet #4)
+- export facilitators from guidebook. make sure all facilitators are exported
+- import to the same Google Spreadsheet. guidebook facilitators(sheet #5). make sure env var in .env is up to date.
+- add column `guidebookfacilitatorid` to sheet #4
+- make sure there's no empty rows in between in the sheet
+- run scripts to map Guidebook ID to Sheet #4 (facilitators sheet) (build and run step4.js)
+
+
+
+now the facilitator sheet (sheet #4) has all the info you need to link facilitators to sessions on Guidebook
+- import the CSV file Guidebook provided (`sample-csv/guidebook/import/link-template.csv`) to Google sheet (sheet #6)
+- copy over values from sheet #4 to Sheet #6
+   - `guidebookfacilitatorid` as `Item ID (Optional)`
+   - `Name` as `Item Name (Optional)`
+   - `Guidebook Session Id` as `Link To Session ID (Optional)`
+   - `Session Name` as `Link To Session Name (Optional)`
+- export Sheet #6 as .csv
+- go to "session facilitators" on guidebook & import that .csv as links to Guidebook
+- done!
+
+

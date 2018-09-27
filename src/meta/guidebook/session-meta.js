@@ -108,7 +108,7 @@ class Timeblock {
   }
 
   findStart(rawValue) {
-    if (!rawValue) return Timeblock.DEFAULT_END_TIME;
+    if (!rawValue) return Timeblock.DEFAULT_START_TIME;
 
     if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
       let matches = rawValue.match(/\d\d:\d\d/g);
@@ -143,7 +143,7 @@ let columns = {
       return `${oldValue}`;
     }),
     new Meta(`sessionname`, `Session Title`, (oldValue) => {
-      return oldValue;
+      return oldValue.trim();
     }),
     new Meta(`description`, `Description (Optional)`, (oldValue) => {
       return oldValue.trim()
@@ -153,6 +153,12 @@ let columns = {
         .filter(paragraph => !!paragraph)
         .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
         .join(``);
+    }),
+    new Meta(`format`, `Session Format`, (oldValue) => {
+      return `<p>${escapeHtml(`This is a ${oldValue} session.`)}</p>`;
+    }),
+    new Meta(`l10nlanguage`, `L10N Language`, (oldValue) => {
+      return oldValue.split(`\n`).map(lang => lang.trim());
     }),
     new Meta(`timeblock`, `Date`, (oldValue) => {
       return new Timeblock(oldValue).date;

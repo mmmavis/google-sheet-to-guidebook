@@ -13,6 +13,8 @@ export default {
       session[meta.newName] = meta.newValue;
     });
 
+    session[`Description (Optional)`] += session[`Session Format`];
+
     return session;
   },
   formatFacilitator: (gsRow) => {
@@ -20,12 +22,13 @@ export default {
     const NUM_PER_ROW = 3;
     let facilitators = [];
 
-    for (let index = 1; index <= NUM_PER_ROW; index++) {
+    for (let index = 0; index <= NUM_PER_ROW; index++) {
       // extracting session meta from spreadsheet
       let facilitator = {};
 
       GuidebookFacilitatorMeta.acceptedProposalsSheet.forEach(meta => {
-        let metaOldValue = gsRow[`otherfacilitator${index}${meta.oldName}`];
+        let gsColName = index === 0 ? meta.oldName : `otherfacilitator${index}${meta.oldName}`;
+        let metaOldValue = gsRow[gsColName];
 
         meta.setNewValue(metaOldValue);
         facilitator[meta.newName] = meta.newValue;
@@ -35,6 +38,8 @@ export default {
 
       if (facilitator.Name) {
         facilitator[`Session UUID`] = UUID;
+        facilitator[`Session Name`] = gsRow.sessionname.trim();
+        facilitator[`Guidebook Session Id`] = gsRow.guidebooksessionid;
         facilitators.push(facilitator);
       }
     }
