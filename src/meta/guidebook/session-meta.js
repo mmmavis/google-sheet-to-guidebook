@@ -21,18 +21,19 @@ class Timeblock {
   }
 
   static get DEFAULT_DATE() {
-    return ``;
-    // return `10/01/2018`;
+    return `10/27/2018`;
   }
 
   static get DEFAULT_START_TIME() {
-    return ``;
-    // return `01:00`;
+    // set the default time to be an insane time so it's obvious to tell it's
+    // a default fallback time
+    return `05:00`;
   }
 
   static get DEFAULT_END_TIME() {
-    return ``;
-    // return `02:00`;
+    // set the default time to be an insane time so it's obvious to tell it's
+    // a default fallback time
+    return `06:00`;
   }
 
   constructor(timeblockString = ``) {
