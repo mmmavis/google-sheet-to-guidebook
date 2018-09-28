@@ -24,7 +24,8 @@ export default function(callback) {
 
     // GoogleSpreadsheet.getRows(worksheet_id, callback)
     sheet.getRows(SPREADSHEET_ACCEPTED_PROPOSALS_WORKSHEET_INDEX, (getRowError, rows) => {
-      console.log(rows.length);
+      console.log(`Number of sessions processed: ${rows.length}`);
+
       if (getRowError) {
         console.log(`[getRowError]`, getRowError);
         callback(getRowError);
