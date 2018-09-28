@@ -13,8 +13,8 @@ WIP, see draft plan below.
 
 1. Google Service Account
 2. A Google Spreadsheet that contains accepted proposals info.
-  - Make sure there's no empty row in between any filled rows as the [google-spreadsheet module](https://www.npmjs.com/package/google-spreadsheet) we are using to access Google Spreadsheet will not be able to access any rows after an empty row)
-  - Give your Google Service Account "Edit" access to this Google Spreadsheet.
+    - Make sure there's NO EMPTY ROW IN BETWEEN any filled rows as the [google-spreadsheet module](https://www.npmjs.com/package/google-spreadsheet) we are using to access Google Spreadsheet will not be able to access any rows after an empty row)
+    - Give your Google Service Account "Edit" access to this Google Spreadsheet.
 
 ### Guidebook
 
@@ -23,13 +23,13 @@ WIP, see draft plan below.
 ### Repo
 
 - `> git clone https://github.com/mmmavis/google-sheet-to-guidebook.git`
-- `> cd google-sheet-to-guidebook.git`
+- `> cd google-sheet-to-guidebook`
 - `> npm install`
 - `> cp sample.env test.env`
 - `> cp sample.env prod-real.env`
-- fill out both `test.env` and `prod-real.env`
+- Fill out both `test.env` and `prod-real.env`. Note that `INDEX` in Google Spreadsheet starts from `1`.
 - By default the scripts reads env vars from `test.env`, if you'd like it to use `prod-real.env` go to `src/scripts/lib/get-env-vars.js` and set `ENV_TYPE` to `PROD`, e.g., ```const ENV_TYPE = `PROD`;```
-- `> npm build`
+- `> npm run build`
 
 
 ## Steps to Port Session and Failicator Info from Google Spreadsheet to Guidebook
@@ -41,7 +41,7 @@ Make sure you finish every step in the Set Up section above.
 1. Run the following command to generate a CSV file and a JSON file that contain session info to be ported to Guidebook.
 
 ```
-> node run dist/scripts/step1.js
+> node dist/scripts/step1.js
 ```
 2. Go to your console/terminal to find the location where the CSV file and JSON file are. (Should be in the `/log/` directory)
 3. Go to Guidebook's admin dashboard, import the just-generated `[timestamp]-formatted-sessions-for-guidebook.csv` file to Guidebook.
@@ -49,8 +49,8 @@ Make sure you finish every step in the Set Up section above.
 
 ### Step 2: Map Guidebook Session IDs to the Accepted Propoals Google Spreadsheet
 
-1. Export sessions info from Guidebook into a CSV file.
-2. Import the CSV file from Guidebook to Google Spreadsheet.
+1. Go to Guidebook's admin dashboard, export "Schedule Sessions" from Guidebook into a CSV file.
+2. Import the CSV file from Guidebook to Google Spreadsheet. Rename the worksheet name to `Guidebook Schedule Sessions` so you can recognize it easily later.
 3. Make sure you update the `SPREADSHEET_GUIDEBOOK_SESSIONS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
 4. Add a new column `guidebooksessionid` to the All Accepted Proposals worksheet (the first worksheet that you created in the setup step)
 5. Run script to map Guidebook Session ID to the All Accepted Proposals worksheet and wait for the script to finish its job.
@@ -63,15 +63,16 @@ Make sure you finish every step in the Set Up section above.
 
 1. Run the following command to generate a CSV file and a JSON file that contain facilitators info to be ported to Guidebook.
 ```
-> node run dist/scripts/step3.js
+> node dist/scripts/step3.js
 ```
-2. Import the CSV file to Google Spreadsheet. And add a `guidebookfacilitatorid` column to it.
-3. Make sure you update the `SPREADSHEET_FACILITATORS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
-4. Import the same CSV file as Custom List Items (facilitators) to Guidebook.
-5. Confirm that the CSV import process has successfully went through.
-6. Export facilitators info from Guidebook into a CSV file.
-7. Import the CSV file from the above step to Google Spreadsheet.
-8. Make sure you update the `SPREADSHEET_GUIDEBOOK_FACILITATORS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
+2. Import the CSV file to Google Spreadsheet. Rename the worksheet name to `Facilitators` so you can recognize it easily later.
+3. Add a `guidebookfacilitatorid` column to the `Facilitators` worksheet that you just created.
+4. Make sure you update the `SPREADSHEET_FACILITATORS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
+5. Import the same CSV file as Custom List Items (Session Facilitators) to Guidebook.
+6. Confirm that the CSV import process has successfully went through.
+7. Go to Guidebook's admin dashboard, export facilitators info from Guidebook into a CSV file.
+8. Import the CSV file from the above step to Google Spreadsheet. Rename the worksheet name to `Guidebook Session Facilitators` so you can recognize it easily later.
+9. Make sure you update the `SPREADSHEET_GUIDEBOOK_FACILITATORS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
 
 ### Step 4: Map Guidebook Facilitator IDs to Our Facilitator Sheet
 

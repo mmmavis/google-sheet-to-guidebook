@@ -170,7 +170,7 @@ let columns = {
     new Meta(`timeblock`, `Time End`, (oldValue) => {
       return new Timeblock(oldValue).end;
     }),
-    new Meta(`room`, `Room/Location`, (oldValue) => {
+    new Meta(`location`, `Room/Location`, (oldValue) => {
       return oldValue;
     }),
     new Meta(`milestone`, `Schedule Track (Optional)`, (oldValue) => {

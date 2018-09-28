@@ -56,7 +56,7 @@ export default function(callback) {
             let facilitatorName = row.name.trim();
             row.guidebookfacilitatorid = guidebookIdMap[facilitatorName];
             row.save(() => {
-              console.log(`yay`, numRowUpdated, facilitatorName, guidebookIdMap[facilitatorName]);
+              console.log(`yay`, numRowUpdated+1, facilitatorName, guidebookIdMap[facilitatorName]);
               numRowUpdated++;
 
               updateRow(rows, cb);
@@ -67,7 +67,7 @@ export default function(callback) {
         };
 
         updateRow(sheetRows, () => {
-          console.log(`WHOOOHOOOOOO`);
+          console.log(`\nWHOOOHOOOOOO`);
           callback();
         });
       });

@@ -61,7 +61,7 @@ export default function(callback) {
             let sessionName = row.sessionname.trim();
             row.guidebooksessionid = guidebookIdMap[sessionName];
             row.save(() => {
-              console.log(`yay`, numRowUpdated, sessionName, guidebookIdMap[sessionName]);
+              console.log(`yay`, numRowUpdated+1, sessionName, guidebookIdMap[sessionName]);
               numRowUpdated++;
 
               updateRow(rows, cb);
@@ -72,7 +72,7 @@ export default function(callback) {
         };
 
         updateRow(sheetRows, () => {
-          console.log(`WHOOOHOOOOOO`);
+          console.log(`\nWHOOOHOOOOOO`);
           callback();
         });
       });

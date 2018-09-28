@@ -24,7 +24,8 @@ export default function(callback) {
     // GoogleSpreadsheet.getRows(worksheet_id, callback)
     // worksheet_id - the index of the sheet to read from (index starts at 1)
     sheet.getRows(1, (getRowError, rows) => {
-      console.log(rows.length);
+      console.log(`Number of sessions processed: ${rows.length}`);
+
       if (getRowError) {
         console.log(`[getRowError]`, getRowError);
         callback(getRowError);
@@ -36,6 +37,8 @@ export default function(callback) {
       facilitatorsArrays.forEach((arr) => {
         facilitators = facilitators.concat(arr);
       });
+
+      console.log(`Number of facilitators processed: ${facilitators.length}`);
 
       callback(null, facilitators);
     });
