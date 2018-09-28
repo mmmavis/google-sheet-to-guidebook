@@ -1,6 +1,12 @@
+# Ignore the following...
+
 node_modules/
 dist/
 log/
 .DS_Store
 *.env
 default.env
+
+# But not these...
+
+!sample.env

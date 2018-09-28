@@ -21,18 +21,19 @@ class Timeblock {
   }
 
   static get DEFAULT_DATE() {
-    return ``;
-    // return `10/01/2018`;
+    return `10/27/2018`;
   }
 
   static get DEFAULT_START_TIME() {
-    return ``;
-    // return `01:00`;
+    // set the default time to be an insane time so it's obvious to tell it's
+    // a default fallback time
+    return `05:00`;
   }
 
   static get DEFAULT_END_TIME() {
-    return ``;
-    // return `02:00`;
+    // set the default time to be an insane time so it's obvious to tell it's
+    // a default fallback time
+    return `06:00`;
   }
 
   constructor(timeblockString = ``) {
@@ -108,7 +109,7 @@ class Timeblock {
   }
 
   findStart(rawValue) {
-    if (!rawValue) return Timeblock.DEFAULT_END_TIME;
+    if (!rawValue) return Timeblock.DEFAULT_START_TIME;
 
     if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
       let matches = rawValue.match(/\d\d:\d\d/g);
@@ -143,7 +144,7 @@ let columns = {
       return `${oldValue}`;
     }),
     new Meta(`sessionname`, `Session Title`, (oldValue) => {
-      return oldValue;
+      return oldValue.trim();
     }),
     new Meta(`description`, `Description (Optional)`, (oldValue) => {
       return oldValue.trim()
@@ -153,6 +154,12 @@ let columns = {
         .filter(paragraph => !!paragraph)
         .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
         .join(``);
+    }),
+    new Meta(`format`, `Session Format`, (oldValue) => {
+      return `<p>${escapeHtml(`This is a ${oldValue} session.`)}</p>`;
+    }),
+    new Meta(`l10nlanguage`, `L10N Language`, (oldValue) => {
+      return oldValue.split(`\n`).map(lang => lang.trim());
     }),
     new Meta(`timeblock`, `Date`, (oldValue) => {
       return new Timeblock(oldValue).date;

@@ -18,7 +18,6 @@ export default function(content, filePath, cb) {
     });
   }, {
     delimiter: {
-      field: `\t`,
       wrap: `"`
     },
     checkSchemaDifferences: false,
