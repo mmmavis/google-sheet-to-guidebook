@@ -85,7 +85,7 @@ Make sure you finish every step in the Set Up section above.
 
 Now the facilitators sheet has all the info you need to link facilitators to sessions on Guidebook.
 
-1. Import the CSV file Guidebook provided (`sample-csv/guidebook/import/link-template.csv`) to Google spreadsheet.
+1. Import the CSV file Guidebook provided (`sample-spreadsheet-and-csv/guidebook/import/link-template.csv`) to Google spreadsheet.
 2. Copying values over from the facilitators sheet to this "link template" sheet.
    - `guidebookfacilitatorid` as `Item ID (Optional)`
    - `Name` as `Item Name (Optional)`
