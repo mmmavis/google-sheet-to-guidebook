@@ -93,4 +93,12 @@ Now the facilitators sheet has all the info you need to link facilitators to ses
    - `Session Name` as `Link To Session Name (Optional)`
 3. Export this "link template" sheet into a CSV file. On Google Spreadsheet, Go to File > Download as > CSV
 4. Go to "Session Facilitators" on Guidebook & Import that CSV file as "links" to Guidebook.
-5. All done!
+
+
+### Step 6: Clean Up and Manual Fixes
+
+1. Go to Guidebook's Dashboard
+2. Use Spreadsheet as reference:
+    - Find "Saturday All Day" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.
+    - Find "Sunday All Day" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.
+    - Find "SAll Day Saturday & Sunday" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.

@@ -62,9 +62,9 @@ class Timeblock {
     this.date = this.findDate(timeblockString);
   }
 
-  // get date() {
-  //   return this.findDate(this.rawValue);
-  // }
+  get date() {
+    return this.findDate(this.rawValue);
+  }
 
   get start() {
     return this.to12HourFormat(this.findStart(this.rawValue));
