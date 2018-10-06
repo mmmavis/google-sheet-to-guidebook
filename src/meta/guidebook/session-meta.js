@@ -62,16 +62,12 @@ class Timeblock {
     this.date = this.findDate(timeblockString);
   }
 
-  get date() {
-    return this.findDate(this.rawValue);
-  }
-
   get start() {
-    return this.to12HourFormat(this.findStart(this.rawValue));
+    return this.findStart(this.rawValue);
   }
 
   get end() {
-    return this.to12HourFormat(this.findEnd(this.rawValue));
+    return this.findEnd(this.rawValue);
   }
 
   to12HourFormat(time = ``) {
@@ -111,29 +107,29 @@ class Timeblock {
   findStart(rawValue) {
     if (!rawValue) return Timeblock.DEFAULT_START_TIME;
 
-    if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
+    // if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
       let matches = rawValue.match(/\d\d:\d\d/g);
 
       if (!matches) return `all day`;
 
-      return Array.isArray(matches) ? matches[0] : matches;
-    }
+      return Array.isArray(matches) ? this.to12HourFormat(matches[0]) : this.to12HourFormat(matches);
+    // }
 
-    return ``;
+    // return ``;
   }
 
   findEnd(rawValue) {
     if (!rawValue) return Timeblock.DEFAULT_END_TIME;
 
-    if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
+    // if (rawValue !== Timeblock.ALL_DAY_SAT_AND_SUN) {
       let matches = rawValue.match(/\d\d:\d\d/g);
 
       if (!matches) return ``;
 
-      return Array.isArray(matches) && matches.length > 1 ? matches[1] : ``;
-    }
+      return Array.isArray(matches) && (matches.length > 1 ? this.to12HourFormat(matches[1]) : ``);
+    // }
 
-    return ``;
+    // return ``;
   }
 }
 

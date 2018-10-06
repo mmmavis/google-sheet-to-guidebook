@@ -1,7 +1,7 @@
 import path from 'path';
 import dotenv from 'dotenv';
 
-const ENV_TYPE = ``;
+const ENV_TYPE = `PROD`;
 
 export default () => {
   const ENV_FILE = ENV_TYPE === `PROD` ? `prod-real.env` : `test.env`;

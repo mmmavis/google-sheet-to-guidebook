@@ -13,7 +13,7 @@ WIP, see draft plan below.
 
 1. Google Service Account
 2. A Google Spreadsheet that contains accepted proposals info.
-    - Make sure there's NO EMPTY ROW IN BETWEEN any filled rows as the [google-spreadsheet module](https://www.npmjs.com/package/google-spreadsheet) we are using to access Google Spreadsheet will not be able to access any rows after an empty row)
+    - Make sure there are **NO EMPTY ROW IN BETWEEN any filled rows** as the [google-spreadsheet module](https://www.npmjs.com/package/google-spreadsheet) we are using to access Google Spreadsheet will not be able to access any rows after an empty row)
     - Give your Google Service Account "Edit" access to this Google Spreadsheet.
 
 ### Guidebook
@@ -43,14 +43,15 @@ Make sure you finish every step in the Set Up section above.
 ```
 > node dist/scripts/step1.js
 ```
-2. Go to your console/terminal to find the location where the CSV file and JSON file are. (Should be in the `/log/` directory)
-3. Go to Guidebook's admin dashboard, import the just-generated `[timestamp]-formatted-sessions-for-guidebook.csv` file to Guidebook.
-4. Confirm that the CSV import process has successfully went through.
+2. Go to your console/terminal and verify that all accepted proposals in your Spreadsheet have been processed and included. (Look for the line where it says `Number of sessions processed: ___`). If the number you are seeing is smaller than what you expected, it's most likely because you have empty rows in between filled rows in your Spreadsheet. Fix them and run `> node dist/scripts/step1.js` again.
+4. Go to your console/terminal to find the location where the CSV file and JSON file are. (Should be in the `/log/` directory)
+5. Go to Guidebook's admin dashboard, import the just-generated `[timestamp]-formatted-sessions-for-guidebook.csv` file to Guidebook.
+6. Confirm that the CSV import process has successfully gone through.
 
 ### Step 2: Map Guidebook Session IDs to the Accepted Propoals Google Spreadsheet
 
 1. Go to Guidebook's admin dashboard, export "Schedule Sessions" from Guidebook into a CSV file.
-2. Import the CSV file from Guidebook to Google Spreadsheet. Rename the worksheet name to `Guidebook Schedule Sessions` so you can recognize it easily later.
+2. Import the CSV file from Guidebook to Google Spreadsheet. (Import file settings: Insert new sheet & Detect Separator ype automatically.) Rename the worksheet name to `Guidebook Schedule Sessions` so you can recognize it easily later.
 3. Make sure you update the `SPREADSHEET_GUIDEBOOK_SESSIONS_WORKSHEET_INDEX` env var in your `.env` file. If you make changes to the file, don't forget to run `npm build` again.
 4. Add a new column `guidebooksessionid` to the All Accepted Proposals worksheet (the first worksheet that you created in the setup step)
 5. Run script to map Guidebook Session ID to the All Accepted Proposals worksheet and wait for the script to finish its job.
@@ -97,8 +98,10 @@ Now the facilitators sheet has all the info you need to link facilitators to ses
 
 ### Step 6: Clean Up and Manual Fixes
 
-1. Go to Guidebook's Dashboard
-2. Use Spreadsheet as reference:
+Go to Guidebook's Dashboard
+
+1. Verify & fix "all day" session timing. Use Spreadsheet as reference:
     - Find "Saturday All Day" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.
     - Find "Sunday All Day" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.
     - Find "SAll Day Saturday & Sunday" sessions and make sure their date, start time, and end time are properly set on Guidebook. Fix these values if needed.
+2. Remove facilitator dupes from Guidebook.
